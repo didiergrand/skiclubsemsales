@@ -14,37 +14,46 @@
 <body>
     <div id="wrap">
         <div id="sidebar">
-            <div id="logo"><a href="/"><img src="assets/images/logo_ski-club-semsales.png" width="250"
-                        alt="Logo du Ski-Club Semsales" /></a></div>
+            <div class="logo-row">
+                <div id="logo"><a href="/"><img src="assets/images/logo_ski-club-semsales.png" width="250"
+                            alt="Logo du Ski-Club Semsales" /></a></div>
+                <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="sr-only">Menu</span>
+                    <span class="mobile-menu-icon mobile-menu-icon--open" aria-hidden="true">☰</span>
+                    <span class="mobile-menu-icon mobile-menu-icon--close" aria-hidden="true">×</span>
+                </button>
+            </div>
             <div class="clear"></div>
-            <ul id="nav" class="nav">
-                <li><a href="#historique">Historique</a></li>
-                <li><a href="#buts">Buts</a></li>
-                <li><a href="#vie-du-club">VIE DU CLUB</a></li>
-                <li><a href="#sorties-oj">NOUVEAU ! SORTIES OJ</a></li>
-                <li><a href="#comite">Comité</a></li>
-                <li><a href="#admission">Admission</a></li>
-                <li><a href="#photos">Photos</a></li>
-            </ul>
-            <p>&nbsp;</p>
-            <p class="sidebar-note"><strong>Suis nos dernières actualités et activités sur nos pages
-                    suivantes:</strong></p>
-            <ul class="nav social-nav">
-                <li><a class="social-link" href="https://www.instagram.com/skiclub_semsales/" target="_blank"
-                        rel="noopener noreferrer">
-                        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                                d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zm0 2A1.5 1.5 0 1 0 13.5 12 1.5 1.5 0 0 0 12 10.5zm4.75-3.25a1 1 0 1 1-1-1 1 1 0 0 1 1 1z" />
-                        </svg>
-                        Instagram</a></li>
-                <li><a class="social-link" href="https://www.facebook.com/profile.php?id=100076425183821"
-                        target="_blank" rel="noopener noreferrer">
-                        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                                d="M13 9h3V6h-3c-2.2 0-4 1.8-4 4v2H6v3h3v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1z" />
-                        </svg>
-                        Facebook</a></li>
-            </ul>
+            <div id="mobile-menu">
+                <ul id="nav" class="nav">
+                    <li><a href="#historique">Historique</a></li>
+                    <li><a href="#buts">Buts</a></li>
+                    <li><a href="#vie-du-club">VIE DU CLUB</a></li>
+                    <li><a href="#sorties-oj">NOUVEAU ! SORTIES OJ</a></li>
+                    <li><a href="#comite">Comité</a></li>
+                    <li><a href="#admission">Admission</a></li>
+                    <li><a href="#photos">Photos</a></li>
+                </ul>
+                <p>&nbsp;</p>
+                <p class="sidebar-note"><strong>Suis nos dernières actualités et activités sur nos pages
+                        suivantes:</strong></p>
+                <ul class="nav social-nav">
+                    <li><a class="social-link" href="https://www.instagram.com/skiclub_semsales/" target="_blank"
+                            rel="noopener noreferrer">
+                            <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7zm5 3.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zm0 2A1.5 1.5 0 1 0 13.5 12 1.5 1.5 0 0 0 12 10.5zm4.75-3.25a1 1 0 1 1-1-1 1 1 0 0 1 1 1z" />
+                            </svg>
+                            Instagram</a></li>
+                    <li><a class="social-link" href="https://www.facebook.com/profile.php?id=100076425183821"
+                            target="_blank" rel="noopener noreferrer">
+                            <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M13 9h3V6h-3c-2.2 0-4 1.8-4 4v2H6v3h3v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1z" />
+                            </svg>
+                            Facebook</a></li>
+                </ul>
+            </div>
         </div>
         <main id="container">
             <div class="section" id="historique">
@@ -351,11 +360,19 @@
             var sections = Array.prototype.slice.call(document.querySelectorAll('.section'));
             var linkMap = {};
             var activeId = null;
+            var sidebar = document.getElementById('sidebar');
+            var menuToggle = document.querySelector('.mobile-menu-toggle');
 
             navLinks.forEach(function (link) {
                 var id = link.getAttribute('href').slice(1);
                 linkMap[id] = link;
             });
+            if (menuToggle && sidebar) {
+                menuToggle.addEventListener('click', function () {
+                    var isOpen = sidebar.classList.toggle('is-open');
+                    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            }
 
             function setActive(id) {
                 if (!id || id === activeId) {
@@ -400,6 +417,18 @@
             } else {
                 setActive(sections[0] && sections[0].id);
             }
+
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    if (!menuToggle || !sidebar) {
+                        return;
+                    }
+                    if (globalThis.matchMedia('(max-width: 960px)').matches && sidebar.classList.contains('is-open')) {
+                        sidebar.classList.remove('is-open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
         });
     </script>
 </body>
